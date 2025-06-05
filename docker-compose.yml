@@ -1,0 +1,39 @@
+services:
+  web:
+    build: .
+    image: php:8.2-apache
+    container_name: empresa_practicas_web
+    user: "${UID}:${GID}"
+    volumes:
+      - /home/marti/docker/proyecto_practicas/web:/var/www/html
+    ports:
+      - "8081:80"
+    depends_on:
+      - db
+    restart: always
+
+  db:
+    image: mysql:8.0
+    container_name: empresa_practicas_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: practicas
+      MYSQL_USER: usuario
+      MYSQL_PASSWORD: clave123
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: empresa_practicas_phpmyadmin
+    environment:
+      PMA_HOST: db
+      PMA_USER: usuario
+      PMA_PASSWORD: clave123
+    ports:
+      - "8082:80"
+    restart: always
+
+volumes:
+  db_data:
