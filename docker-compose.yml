@@ -16,10 +16,10 @@ services:
     image: mysql:8.0
     container_name: fempo_db
     environment:
-      MYSQL_ROOT_PASSWORD: toor
+      MYSQL_ROOT_PASSWORD: <password>
       MYSQL_DATABASE: fempo
       MYSQL_USER: iesemili
-      MYSQL_PASSWORD: 1353m1l1
+      MYSQL_PASSWORD: <password>
     volumes:
       - db_data:/var/lib/mysql
     restart: always
@@ -30,7 +30,7 @@ services:
     environment:
       PMA_HOST: db
       PMA_USER: iesemili
-      PMA_PASSWORD: 1353m1l1
+      PMA_PASSWORD: <password>
     ports:
       - "8082:80"
     restart: always
