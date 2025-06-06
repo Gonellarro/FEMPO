@@ -26,9 +26,9 @@ Este proyecto permite a un centro educativo gestionar las solicitudes de prácti
 ### 1.1 Dockerfile
 ```Dockerfile
 FROM php:8.2-apache
+
 RUN docker-php-ext-install mysqli
-COPY html/ /var/www/html/
-EXPOSE 80
+RUN a2enmod rewrite
 ```
 
 ### 1.2 docker-compose.yml
@@ -50,8 +50,8 @@ services:
     environment:
       MYSQL_DATABASE: practicas
       MYSQL_USER: usuario
-      MYSQL_PASSWORD: clave123
-      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_PASSWORD:  <password>
+      MYSQL_ROOT_PASSWORD: <password>
     volumes:
       - db_data:/var/lib/mysql
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
@@ -64,8 +64,8 @@ volumes:
 ```
 MYSQL_DATABASE=practicas
 MYSQL_USER=usuario
-MYSQL_PASSWORD=clave123
-MYSQL_ROOT_PASSWORD=root123
+MYSQL_PASSWORD=<password>
+MYSQL_ROOT_PASSWORD=<password>
 ```
 
 ---
@@ -148,6 +148,6 @@ Pantalla para tramitar solicitudes de una empresa:
 ---
 
 ## Autoría
-IES Emili Darder — Proyecto de gestión de prácticas FCT  
+Martí Vich para IES Emili Darder — Proyecto de gestión de prácticas FCT  con ayuda de ChatGPT
 Basado en PHP + MySQL + Bootstrap + Docker  
 Junio 2025
