@@ -1,8 +1,8 @@
 <?php
 $host = "db";                // ← Este es el nombre del servicio en docker-compose
-$usuario = "usuario";        // definido en MYSQL_USER
-$contrasena = "clave123";    // definido en MYSQL_PASSWORD
-$baseDeDatos = "practicas";  // definido en MYSQL_DATABASE
+$usuario = "iesemili";        // definido en MYSQL_USER
+$contrasena = "1353m1l1";    // definido en MYSQL_PASSWORD
+$baseDeDatos = "fempo";  // definido en MYSQL_DATABASE
 
 $conn = new mysqli($host, $usuario, $contrasena, $baseDeDatos);
 

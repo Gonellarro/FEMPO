@@ -6,7 +6,7 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'profesor') {
 }
 
 $professor_id = $_SESSION['usuario_id'];
-$conn = new mysqli("db", "usuario", "clave123", "fempo");
+$conn = new mysqli("db", "iesemili", "1353m1l1", "fempo");
 
 // Eliminar empresa si no tiene solicitudes pendientes
 if (isset($_GET['eliminar'])) {
@@ -21,8 +21,8 @@ if (isset($_GET['eliminar'])) {
     $stmt->close();
 
     if ($pendientes == 0) {
-        // Borrar de CONTACE
-        $stmt = $conn->prepare("DELETE FROM CONTACE WHERE empresa_id = ?");
+        // Borrar de CONTACTE
+        $stmt = $conn->prepare("DELETE FROM CONTACTE WHERE empresa_id = ?");
         $stmt->bind_param("i", $empresa_id);
         $stmt->execute();
         $stmt->close();
@@ -51,7 +51,7 @@ $query = "
 $result = $conn->query($query);
 while ($empresa = $result->fetch_assoc()) {
     // Obtener datos del contacto
-    $stmt = $conn->prepare("SELECT id FROM CONTACE WHERE empresa_id = ?");
+    $stmt = $conn->prepare("SELECT id FROM CONTACTE WHERE empresa_id = ?");
     $stmt->bind_param("i", $empresa['empresa_id']);
     $stmt->execute();
     $stmt->bind_result($contacte_id);

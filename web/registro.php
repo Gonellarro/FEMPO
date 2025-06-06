@@ -1,7 +1,7 @@
 <?php
 $mensaje = "";
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $conn = new mysqli("db", "usuario", "clave123", "fempo");
+    $conn = new mysqli("db", "iesemili", "1353m1l1", "fempo");
 
     if ($conn->connect_error) {
         die("❌ Error de conexión: " . $conn->connect_error);
@@ -39,8 +39,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $empresa_id = $stmt2->insert_id;
             $stmt2->close();
 
-            // Insertar en CONTACE (vincular)
-            $stmt3 = $conn->prepare("INSERT INTO CONTACE (id, empresa_id) VALUES (?, ?)");
+            // Insertar en CONTACTE (vincular)
+            $stmt3 = $conn->prepare("INSERT INTO CONTACTE (id, empresa_id) VALUES (?, ?)");
             $stmt3->bind_param("ii", $usuari_id, $empresa_id);
             $stmt3->execute();
             $stmt3->close();
@@ -61,13 +61,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <head>
   <meta charset="UTF-8">
   <title>Registro de Empresa</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 <body class="bg-light">
   <div class="container py-5">
     <h2 class="mb-4 text-center">Registro de Empresa</h2>
     <?= $mensaje ?>
-    <form method="post" class="p-4 shadow bg-white rounded">
+    <form method="post" class="p-4 shadow bg-white rounded" oninput="verificarCoincidencia()">
       <div class="mb-3">
         <label class="form-label">Nombre de la empresa</label>
         <input type="text" name="nombre_empresa" class="form-control" required>
@@ -86,13 +88,45 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <label class="form-label">Correo electrónico</label>
         <input type="email" name="email" class="form-control" required>
       </div>
-      <div class="mb-3">
-        <label class="form-label">Contraseña</label>
-        <input type="password" name="password" class="form-control" required>
+      <div class="row">
+        <div class="mb-3 col">
+          <label class="form-label">Contraseña</label>
+          <input type="password" id="password" name="password" class="form-control" required>
+        </div>
+        <div class="mb-3 col">
+          <label class="form-label">Repite la contraseña</label>
+          <div class="input-group">
+            <input type="password" id="confirm_password" class="form-control" required>
+            <span class="input-group-text" id="check_icon"><i class="bi"></i></span>
+          </div>
+        </div>
       </div>
-      <button type="submit" class="btn btn-primary">Registrarse</button>
+      <button type="submit" class="btn btn-primary" id="submitBtn" disabled>Registrarse</button>
       <a href="index.php" class="btn btn-secondary ms-2">Volver</a>
     </form>
   </div>
+
+<script>
+function verificarCoincidencia() {
+  const pass = document.getElementById('password');
+  const confirm = document.getElementById('confirm_password');
+  const icon = document.getElementById('check_icon').querySelector('i');
+  const btn = document.getElementById('submitBtn');
+
+  if (pass.value && confirm.value) {
+    if (pass.value === confirm.value) {
+      icon.className = 'bi bi-check-circle-fill text-success';
+      btn.disabled = false;
+    } else {
+      icon.className = 'bi bi-x-circle-fill text-danger';
+      btn.disabled = true;
+    }
+  } else {
+    icon.className = '';
+    btn.disabled = true;
+  }
+}
+</script>
+
 </body>
 </html>

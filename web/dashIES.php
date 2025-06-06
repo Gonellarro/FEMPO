@@ -6,7 +6,7 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'profesor') {
 }
 
 $professor_id = $_SESSION['usuario_id'];
-$conn = new mysqli("db", "usuario", "clave123", "fempo");
+$conn = new mysqli("db", "iesemili", "1353m1l1", "fempo");
 
 $stmt = $conn->prepare("SELECT nom FROM USUARI WHERE id = ?");
 $stmt->bind_param("i", $professor_id);
@@ -24,7 +24,7 @@ $mensaje = "";
 
 
 // Conexión
-$conn = new mysqli("db", "usuario", "clave123", "fempo");
+$conn = new mysqli("db", "iesemili", "1353m1l1", "fempo");
 
 // Añadir alumno
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['nuevo_alumno'])) {

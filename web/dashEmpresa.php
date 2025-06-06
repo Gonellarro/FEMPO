@@ -6,10 +6,10 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'empresa') {
 }
 
 $usuari_id = $_SESSION['usuario_id'];
-$conn = new mysqli("db", "usuario", "clave123", "fempo");
+$conn = new mysqli("db", "iesemili", "1353m1l1", "fempo");
 
-// Obtener empresa_id desde CONTACE
-$stmt = $conn->prepare("SELECT empresa_id FROM CONTACE WHERE id = ?");
+// Obtener empresa_id desde CONTACTE
+$stmt = $conn->prepare("SELECT empresa_id FROM CONTACTE WHERE id = ?");
 $stmt->bind_param("i", $usuari_id);
 $stmt->execute();
 $result = $stmt->get_result();

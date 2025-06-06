@@ -5,7 +5,7 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'profesor') {
     exit;
 }
 
-$conn = new mysqli("db", "usuario", "clave123", "fempo");
+$conn = new mysqli("db", "iesemili", "1353m1l1", "fempo");
 
 if (!isset($_GET['empresa_id'])) {
     die("❌ Falta el parámetro empresa_id.");

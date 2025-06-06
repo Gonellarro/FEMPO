@@ -7,7 +7,7 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'profesor') {
 
 $professor_id = $_SESSION['usuario_id'];
 
-$conn = new mysqli("db", "usuario", "clave123", "fempo");
+$conn = new mysqli("db", "iesemili", "1353m1l1", "fempo");
 
 // Obtener solicitudes no aprobadas agrupadas por empresa
 $empresas = [];

@@ -19,7 +19,7 @@ function iniciarSesionSegura($usuario, $rol) {
 }
 
 // Conexión
-$conn = new mysqli("db", "usuario", "clave123", "fempo");
+$conn = new mysqli("db", "iesemili", "1353m1l1", "fempo");
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = strtolower(trim($_POST['email']));
@@ -83,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       <div class="text-center mt-3">
         <a href="index.php" class="btn btn-link">Volver al inicio</a>
         <br>
-        <a href="olvidar_contrasenya.php" class="text-decoration-none">¿Olvidaste tu contraseña?</a>
+        <a href="olvida_contrasenya.php" class="text-decoration-none">¿Olvidaste tu contraseña?</a>
       </div>
     </form>
   </div>
